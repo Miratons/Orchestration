@@ -1,0 +1,26 @@
+version: '2'
+
+services:
+    db:
+        build:
+          context: .
+          dockerfile: Dockerfile.db
+        environment:
+          - POSTGRES_DB=homefamily
+          - POSTGRES_USER=postgres
+          - POSTGRES_PASSWORD=postgres
+
+    spring:
+        build:
+            context: .
+            dockerfile: Dockerfile.api
+        volumes:
+            - ./:/var/www/symfony
+        ports:
+            - 8080:8080
+        depends_on:
+            - db
+        environment:
+          - POSTGRES_DB=homefamily
+          - POSTGRES_USER=postgres
+          - POSTGRES_PASSWORD=postgres

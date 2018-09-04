@@ -1,0 +1,5 @@
+FROM openjdk:8-jre-alpine
+COPY ./target/home-family-0.0.1-SNAPSHOT.jar /usr/src/home-family/
+WORKDIR /usr/src/home-family
+EXPOSE 8080
+CMD ["java", "-jar", "home-family-0.0.1-SNAPSHOT.jar"]
